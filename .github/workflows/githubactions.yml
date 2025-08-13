@@ -1,14 +1,21 @@
-name: Exemplo de fluxo de trabalho
+name: Tests Frontend
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
-  acao_inicial_job:
+  test-unit:
     runs-on: ubuntu-latest
     steps:
-      - name: Imprime OLA
-        run: echo "OLA"
-      - name: Imprime TCHAU
-        run: echo "TCHAU"
-        
+      - uses: actions/checkout@v3
+      - name: Usar Node 21.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Run tests frontend
+        run: npx test
