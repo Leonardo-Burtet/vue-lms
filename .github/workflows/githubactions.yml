@@ -17,5 +17,5 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Run tests frontend
-        run: npx test
+      - name: Run vitest 
+        run: npm run test:unit
